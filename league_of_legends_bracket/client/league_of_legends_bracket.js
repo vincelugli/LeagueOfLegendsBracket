@@ -1,15 +1,7 @@
-// counter starts at 0
-Session.setDefault("counter", 0);
+// TODO: Router.configure
 
-Template.hello.helpers({
-  counter: function () {
-    return Session.get("counter");
-  }
-});
-
-Template.hello.events({
-  'click button': function () {
-    // increment the counter when button is clicked
-    Session.set("counter", Session.get("counter") + 1);
-  }
+Router.map(function() {
+  this.route('home', {path: ['/', '/home']});
+  this.route('create', {path: '/create'});
+  this.route('team_profile', {path: '/team_profile'});
 });
