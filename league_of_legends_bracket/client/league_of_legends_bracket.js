@@ -10,5 +10,22 @@ Router.map(function() {
 	  },
   	waitOn: function () {
   		return Meteor.subscribe("teamByCaptain", this.params.query["captainName"]);
-  }});
+    }});
+  this.route('login', {path: '/login'});
+  this.route('admin', {path: '/admin',
+    data: function() {
+      return this.params.query;
+    },
+    waitOn: function() {
+      return Meteor.subscribe("teams");
+    }
+  });
+  this.route('createTournament', {path: '/createTournament'});
+  this.route('bracket', {path: '/bracket',
+    data: function() {
+      return this.params.query;
+    },
+    waitOn: function() {
+      return Meteor.subscribe("teams");
+    }});
 });

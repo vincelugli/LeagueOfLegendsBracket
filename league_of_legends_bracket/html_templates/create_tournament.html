@@ -1,0 +1,20 @@
+<template name="createTournament">
+	<h1>Create Tournament</h1>
+	<p>
+		<input type="text" id="tournamentName" placeholder="Tournament Name">
+	</p>
+	<p>
+		Tournament Type: 
+		<select id="type" class="tournament_type">
+		  <option value="swiss">Swiss</option>
+		  <option value="single elimination">Single Elimination</option>
+		  <option value="double elimination">Double Elimination</option>
+		  <option value="round robin">Round Robin</option>
+		</select>
+	</p>
+	<p>
+		<input type="text" id="url" placeholder="Tournament URL">
+		<small style="display: none" id="error" class="error">Invalid URL</small>
+	</p>
+	<button type="submit" class="create_tournament">Create!</button>
+</template>
