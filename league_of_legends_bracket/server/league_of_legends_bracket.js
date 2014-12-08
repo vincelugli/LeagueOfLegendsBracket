@@ -67,9 +67,10 @@ Meteor.methods({
 		return result;
 	},
 	getParticipant: function(name, playerId) {
-		var queryUrl = "https://api.challonge.com/v1/tournaments/" + name + "/participants.json?" + 
+		var queryUrl = "https://api.challonge.com/v1/tournaments/" + name + "/participants/" + playerId + ".json?" + 
 			"api_key=" + chalKey + "&participant_id=" + playerId;
 
+		console.log(queryUrl);
 		var result = HTTP.get(queryUrl);
 
 		return result;
