@@ -12,8 +12,9 @@ Template.bracket.rendered = function () {
 	updateMatchInfo();
 
 	interval = setInterval(function() {
+		checkMatchHistory();
 		updateMatchInfo();
-		if (completedMatches == matchesInRound) {
+		if (completedMatches == totalMatches) {
 			completedMatches = 0;
 			matchesInRound = 0;
 			closeInterval();
@@ -25,6 +26,11 @@ function closeInterval() {
 	clearInterval(interval);
 }
 
+function checkMatchHistory() {
+	console.log("Checking match history");
+	// TODO : Check match history for every team using Riot API.
+}
+
 function updateMatchInfo() {
 	Meteor.call("getMatches", data["uniqueUrl"], function(error, result) {
 		if (result) {
@@ -32,7 +38,7 @@ function updateMatchInfo() {
 			totalMatches = resultData.length;
 
 			for (var i=0; i<resultData.length; i++) {
-				console.log(resultData[i]);
+				// console.log(resultData[i]);
 				var player1_id = resultData[i].match.player1_id;
 				var player2_id = resultData[i].match.player2_id;
 				var player1;
