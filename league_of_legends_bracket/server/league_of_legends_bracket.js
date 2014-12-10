@@ -14,6 +14,9 @@ Meteor.startup(function () {
 });
 
 Meteor.methods({
+	/**
+	/* RIOT API CALLS
+	**/
 	getSummonerId : function(summonerName) {
 		var url = "https://na.api.pvp.net/api/lol/" + region + "/v1.4/summoner/by-name/" + summonerName + "?api_key=" + riotKey;
 		var result = HTTP.get(url);
@@ -26,6 +29,11 @@ Meteor.methods({
 
 		return result;
 	},
+
+
+	/**
+	/* CHALLONGE API CALLS
+	**/
 	createTournament : function(name, type, url) {
 		var queryUrl = "https://api.challonge.com/v1/tournaments.json?" + 
 			"api_key=" + chalKey + 
@@ -66,13 +74,12 @@ Meteor.methods({
 
 		return result;
 	},
-	getParticipant: function(name, playerId) {
+	getParticipant: function(name, playerId, matchInfo) {
 		var queryUrl = "https://api.challonge.com/v1/tournaments/" + name + "/participants/" + playerId + ".json?" + 
 			"api_key=" + chalKey + "&participant_id=" + playerId;
 
-		console.log(queryUrl);
 		var result = HTTP.get(queryUrl);
 
-		return result;
+		return {result: result, matchInfo: matchInfo};
 	}
 });
