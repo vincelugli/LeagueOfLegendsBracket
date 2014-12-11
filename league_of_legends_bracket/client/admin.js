@@ -38,8 +38,10 @@ Template.admin.events({
 		var teams = Teams.find().fetch();
 		var teamNameList = [];
 		for (var i=0; i<teams.length; i++) {
-			var team = teams[i];
-			teamNameList[i] = team.teamName;
+			if (teams[i].tournament == tournamentName) {
+				var team = teams[i];
+				teamNameList[i] = team.teamName;
+			}
 		}
 
 		var info = document.getElementById("tournamentInfo");
